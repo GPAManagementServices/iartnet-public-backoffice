@@ -1,0 +1,49 @@
+# Copia come `Dockerfile.xdebug` (file ignorato da Git), accanto a questo path.
+# Uguale al Dockerfile ufficiale + estensione Xdebug e ini minima (mode=off di default).
+
+# STAGE 1: Base Runtime (Debian Bookworm)
+FROM php:8.4-fpm-bookworm AS base
+
+COPY infra/docker/app/php.custom.ini /usr/local/etc/php/conf.d/zz-custom.ini
+
+RUN printf '%s\n' \
+    '; Xdebug 3 — default disattivato (XDEBUG_MODE=debug da env)' \
+    '[xdebug]' \
+    'xdebug.mode = off' \
+    'xdebug.client_host = host.docker.internal' \
+    'xdebug.client_port = 9003' \
+    'xdebug.start_with_request = trigger' \
+    'xdebug.idekey = VSCODE' \
+    > /usr/local/etc/php/conf.d/zz-xdebug.ini \
+    && apt-get update && apt-get install -y \
+    libpng-dev libjpeg-dev libfreetype6-dev libwebp-dev \
+    libzip-dev zip unzip git curl libmagickwand-dev \
+    libicu-dev --no-install-recommends \
+    && pecl install imagick xdebug \
+    && docker-php-ext-enable imagick xdebug \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-install gd pdo_mysql zip opcache bcmath intl exif
+
+FROM composer:2 AS vendor
+WORKDIR /app
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --ignore-platform-reqs
+
+FROM base AS final
+WORKDIR /var/www/html
+
+COPY --from=vendor /app/vendor ./vendor
+COPY . .
+
+RUN echo '#!/bin/sh' > /usr/local/bin/start.sh && \
+    echo 'php artisan optimize:clear' >> /usr/local/bin/start.sh && \
+    echo 'php artisan migrate --force' >> /usr/local/bin/start.sh && \
+    echo 'php artisan storage:link || true' >> /usr/local/bin/start.sh && \
+    echo 'exec docker-php-entrypoint php-fpm' >> /usr/local/bin/start.sh && \
+    chmod +x /usr/local/bin/start.sh
+
+RUN chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
+
+USER www-data
+CMD ["/usr/local/bin/start.sh"]

@@ -1,0 +1,49 @@
+publiccodeYmlVersion: "0.2"
+name: iartnet-backoffice
+url: "https://github.com/GPAManagementServices/iartnet_backoffice"
+softwareVersion: "1.0.0"
+releaseDate: "2026-06-28"
+platforms:
+  - web
+categories:
+  - content-management
+developmentStatus: active
+softwareType: standalone
+description:
+  it:
+    localisedName: IARTNET Backoffice
+    shortDescription: CMS Laravel/Filament e API REST v1 per contenuti IARTNET.
+    longDescription: >
+      Backoffice multilingue (IT/EN) per attività, istituzioni, persone, progetti,
+      pagine, FAQ e research catalogue; API v1 per il frontend pubblico.
+  en:
+    localisedName: IARTNET Backoffice
+    shortDescription: Laravel/Filament CMS and REST API v1 for IARTNET content.
+legal:
+  license: AGPL-3.0-or-later
+maintenance:
+  type: internal
+  contacts:
+    - name: Accademia di Brera
+      affiliation: Accademia di Brera
+    - name: GPA Management Services
+      email: info@gpams.it
+      affiliation: GPA Management Services
+localisation:
+  availableLanguages:
+    - it
+    - en
+dependsOn:
+  open:
+    - name: Laravel
+      version: "12"
+      url: "https://laravel.com"
+    - name: Filament
+      url: "https://filamentphp.com"
+it:
+  conforme:
+    - modello-interoperabilita
+    - gdpr
+  countryExtensionVersion: "0.2"
+  piattaforme:
+    - web

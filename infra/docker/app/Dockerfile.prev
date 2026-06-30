@@ -1,0 +1,36 @@
+# STAGE 1: Base Runtime (Debian Bookworm)
+FROM php:8.3-fpm-bookworm AS base
+RUN apt-get update && apt-get install -y \
+    libpng-dev libjpeg-dev libfreetype6-dev libwebp-dev \
+    libzip-dev zip unzip git curl libmagickwand-dev \
+    libicu-dev --no-install-recommends \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-install gd pdo_mysql zip opcache bcmath intl
+
+# STAGE 2: Build (Composer)
+FROM composer:2 AS vendor
+WORKDIR /app
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --ignore-platform-reqs
+
+# STAGE 3: Final Production Image
+FROM base AS final
+WORKDIR /var/www/html
+
+COPY --from=vendor /app/vendor ./vendor
+COPY . .
+
+# Generazione entrypoint di boot inline
+RUN echo '#!/bin/sh' > /usr/local/bin/start.sh && \
+    echo 'php artisan optimize:clear' >> /usr/local/bin/start.sh && \
+    echo 'php artisan migrate --force' >> /usr/local/bin/start.sh && \
+    echo 'exec docker-php-entrypoint php-fpm' >> /usr/local/bin/start.sh && \
+    chmod +x /usr/local/bin/start.sh
+
+RUN chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
+
+USER www-data
+CMD ["/usr/local/bin/start.sh"]

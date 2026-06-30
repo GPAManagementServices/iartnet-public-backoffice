@@ -1,0 +1,41 @@
+*.log
+.DS_Store
+.env
+.env.backup
+.env.production
+.phpactor.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+# .vscode: ignorati; tasks.json resta versionabile (launch.json locale / Cursor)
+/.vscode/*
+!/.vscode/tasks.json
+/.vscode/launch.json
+/.zed
+/auth.json
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+Homestead.json
+Homestead.yaml
+Thumbs.db
+docker-compose.yml.CMS
+# Override locale (Xdebug, porta DB host, ecc.): copia docker-compose.override.example.yml
+/docker-compose.override.yml
+/infra/docker/app/Dockerfile.xdebug
+/infra/docker/app/xdebug.ini
+/Python
+/Python/*
+
+# Local operational backups
+.env.backup.*
+docker-compose.yml.backup.*
+docker-compose.yml.before-prod-hardening.*
+_backup_pre_prod_*/
+storage_masked_backup/

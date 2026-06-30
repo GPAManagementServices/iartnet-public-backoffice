@@ -1,0 +1,38 @@
+.git
+.gitignore
+
+.env
+.env.*
+!.env.example
+
+vendor/
+node_modules/
+
+# Local backups / temporary files
+_backup*/
+*_backup*/
+backup*/
+backups*/
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+*.tmp
+
+# Database dumps / archives
+*.sql
+*.sql.gz
+*.dump
+*.tar
+*.tar.gz
+*.zip
+
+# Laravel runtime data
+storage/app/.cache/
+storage/app/public/*
+storage/app/private/*
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*

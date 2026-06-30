@@ -1,0 +1,98 @@
+form > .fi-fo-component-ctn.gap-6:first-child {
+    --cols-lg: repeat(1, minmax(0, 1fr)) !important;
+  }
+
+  @media (min-width: 768px) {
+    .md\:grid-cols-3 {
+        margin: 20px 0;
+    }
+}
+
+.absolute.top-0.right-0{
+  background-color: #000;
+  color:#fff;
+  right: 0;
+}
+
+[data-fi-modal-id="curator-panel"] .fi-modal-content{
+  position: relative;
+}
+
+[data-fi-modal-id="curator-panel"] .fi-modal-header{
+  position: relative;
+  z-index: 50;
+}
+
+.route-filament-admin-resources-media-index
+.fi-ta-content-grid
+.fi-ta-record
+.curator-grid-column {
+  position: relative !important;
+  inset: auto !important;
+
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto !important;
+
+  margin-bottom: 0.85rem; 
+}
+
+.route-filament-admin-resources-media-index
+.fi-ta-content-grid
+.fi-ta-record
+.curator-grid-column > div {
+  height: 100% !important;
+}
+
+.route-filament-admin-resources-media-index
+.fi-ta-content-grid
+.fi-ta-record
+.curator-grid-column img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.route-filament-admin-resources-media-index
+.fi-ta-content-grid
+.fi-ta-record
+.curator-document-image {
+  height: 100% !important;
+}
+
+.route-filament-admin-resources-media-index
+.fi-ta-content-grid
+.fi-ta-record
+.curator-grid-column
+div.absolute.inset-x-0.bottom-0.bg-gradient-to-t {
+  padding-top: 2rem !important;
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.90) 0%,
+    rgba(0, 0, 0, 0.55) 35%,
+    rgba(0, 0, 0, 0.00) 75%
+  ) !important;
+}
+
+.route-filament-admin-resources-media-index
+.fi-ta-content-grid
+.fi-ta-record
+.curator-grid-column
+div.absolute.inset-x-0.bottom-0 p {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
+}
+.curator-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .curator-picker-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+.curator-document-image.grid{
+    max-width: 300px;
+}
