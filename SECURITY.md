@@ -1,32 +1,29 @@
-# Policy di sicurezza
+# Security Policy
 
-## Segnalazione di vulnerabilità
+## Segnalazione di una vulnerabilità
 
-Se ritieni di aver individuato una **vulnerabilità di sicurezza** in questo progetto, ti chiediamo di **non** aprire una issue pubblica.
+Non segnalare vulnerabilità di sicurezza tramite Issue, Pull Request,
+Discussion o commenti pubblici.
 
-**Come segnalare:**
+Usa esclusivamente il canale privato di GitHub:
 
-- Contatta i maintainer del progetto tramite i canali indicati nel repository (o nella sezione "About" / "Security" su GitHub, se disponibile).
-- Descrivi il problema in modo sufficiente a riprodurlo, senza divulgare dettagli sensibili in canali non sicuri.
+https://github.com/GPAManagementServices/iartnet-public-backoffice/security/advisories/new
 
-**Cosa aspettarsi:**
+Nella segnalazione privata indica, quando possibile:
 
-- Conferma di ricezione della segnalazione.
-- Aggiornamento sullo stato (in analisi, in corso di fix, risolto).
-- Se applicabile, coordinamento sulla divulgazione pubblica dopo la release della correzione (e eventuale credito al segnalante, se desiderato).
+- versione, tag o commit interessato;
+- passaggi per riprodurre il problema;
+- impatto potenziale;
+- eventuale mitigazione proposta.
 
-Non garantiamo tempi di risposta fissi; le segnalazioni saranno trattate con priorità ragionevole.
+Non pubblicare credenziali, token, dati personali, dati di produzione,
+dump di database o dettagli di exploit.
 
-## Versioni supportate
+## Reporting a vulnerability
 
-Per le correzioni di sicurezza vengono considerate le versioni in uso attivo (di norma l’ultima release). Per dettagli sulle versioni supportate, consulta i tag e le release nel repository.
+Do not report security vulnerabilities through public Issues, Pull Requests,
+Discussions, or comments.
 
-## Scope
+Use GitHub private vulnerability reporting:
 
-Questa policy si applica al codice e alla configurazione del progetto IARTNET Backoffice. Dipendenze esterne (Laravel, Filament, pacchetti Composer/npm) sono soggette alle rispettive policy dei maintainer upstream.
-
----
-
-## English
-
-**Reporting vulnerabilities:** Please do not open public issues. Contact the project maintainers (see repository or GitHub "Security" section). Describe the issue in enough detail to reproduce it. You can expect acknowledgment and updates; we may coordinate on disclosure and credit. We focus security fixes on actively supported versions. This policy covers this project’s code and configuration; third-party dependencies follow their upstream policies.
+https://github.com/GPAManagementServices/iartnet-public-backoffice/security/advisories/new
